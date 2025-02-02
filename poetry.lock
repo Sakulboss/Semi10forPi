@@ -115,5 +115,5 @@ numpy = ["NumPy"]
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">=3.12"
-content-hash = "279c5122dca8def33b518951798261eb9c8306de0bdf0a3f796f82589af76987"
+python-versions = ">=3.11"
+content-hash = "2a1b77a897c5b3be1858d4158731ab66c5fe1897c8269cec99490a33dba4b0af"
