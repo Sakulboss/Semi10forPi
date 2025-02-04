@@ -21,7 +21,7 @@ def aufnahmen(seconds: float, fs = 44100, printRecording = True) -> None:
 		print(myrecording)
 	return myrecording
 
-def speichern(myrecording, fs =  44100) -> None:
+def speichern(myrecording, fs =  48000) -> None:
 	write(get_new_filename("wav"), fs, myrecording)  # Save as WAV file
 	print('Programmende')
 
