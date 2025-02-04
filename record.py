@@ -26,6 +26,7 @@ def speichern(myrecording, fs =  48000) -> None:
 	print('Programmende')
 
 def main():
+	print(sd.query_devices())
 	dauer = 3 #in Sekunden
 	speichern(aufnahmen(dauer))
 
