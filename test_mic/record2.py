@@ -6,7 +6,7 @@ sample_format = pyaudio.paInt16  # 16 bits per sample
 channels = 1
 fs = 44100  # Record at 44100 samples per second
 seconds = 10
-filename = "output.wav"
+filename = "../../Semi10/Aufnahmen/output.wav"
 
 p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
