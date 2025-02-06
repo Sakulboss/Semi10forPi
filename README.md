@@ -13,7 +13,6 @@ https://douwevandermeij.medium.com/proper-python-setup-with-pyenv-poetry-4d8baea
 
 
 Debugging sources:
-
 https://stackoverflow.com/questions/69150641/aplay-main831-audio-open-error-no-such-file-or-directory
 https://stackoverflow.com/questions/49333582/portaudio-library-not-found-by-sounddevice
 https://stackoverflow.com/questions/36893382/scipy-installation-issue-getting-importerror-libopenblas-so-0-cannot-open-sha
