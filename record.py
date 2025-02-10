@@ -12,7 +12,7 @@ def pathway():
 	pass
 
 def aufnahmen(seconds: float, fs = 48000, printRecording = True) -> None:
-	myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=1, device=1)
+	myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=1, device=2)
 	print('Aufnahme gestartet.')
 	sleep(seconds + 1)
 	#sd.wait()  # Wait until recording is finished
