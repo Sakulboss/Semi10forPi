@@ -6,5 +6,5 @@ GPIO.setwarnings(False)
 GPIO.setup(14, GPIO.OUT)
 
 print ("fan on")
-GPIO.output(17, GPIO.LOW)
-time.sleep(10)
+#GPIO.output(17, GPIO.LOW)
+#time.sleep(10)
