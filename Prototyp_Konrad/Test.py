@@ -35,7 +35,7 @@ def record_audio(beehive_id):
 # Funktion zum Speichern der Audioaufnahme
 def save_audio(audio_data, beehive_id):
     filename = f"beehive_{beehive_id + 1}_audio.wav"
-    write(filename, audio_data, SAMPLE_RATE)
+    write(filename, SAMPLE_RATE, audio_data)
     print(f"Audio für Bienenstock {beehive_id + 1} gespeichert als {filename}.")
 
 
