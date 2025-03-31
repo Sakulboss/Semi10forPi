@@ -2,6 +2,7 @@ import time
 import csv
 import os
 import sounddevice as sd
+from scipy.io.wavfile import write
 import numpy as np
 import Adafruit_DHT
 import RPi.GPIO as GPIO
@@ -25,7 +26,7 @@ for pin in MIC_PIN:
 # Funktion zum Aufnehmen von Audio
 def record_audio(beehive_id):
     print(f"Aufnahme von Bienenstock {beehive_id + 1}...")
-    audio_data = sd.rec(int(RECORD_SECONDS * SAMPLE_RATE), samplerate=SAMPLE_RATE, channels=1, dtype='float64')
+    audio_data = sd.rec(int(RECORD_SECONDS * SAMPLE_RATE), samplerate=SAMPLE_RATE, channels=1, device=1)
     sd.wait()  # Warten, bis die Aufnahme abgeschlossen ist
     print(f"Aufnahme von Bienenstock {beehive_id + 1} abgeschlossen.")
     return audio_data
@@ -34,7 +35,7 @@ def record_audio(beehive_id):
 # Funktion zum Speichern der Audioaufnahme
 def save_audio(audio_data, beehive_id):
     filename = f"beehive_{beehive_id + 1}_audio.wav"
-    sd.write(filename, audio_data, SAMPLE_RATE)
+    write(filename, audio_data, SAMPLE_RATE)
     print(f"Audio für Bienenstock {beehive_id + 1} gespeichert als {filename}.")
 
 
