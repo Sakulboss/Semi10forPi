@@ -53,6 +53,7 @@ if not os.path.exists(CSV_FILE):
 
 # Hauptschleife
 try:
+    GPIO.cleanup()
     while True:
         for beehive_id in range(NUM_BEEHIVES):
             # Mikrofon aktivieren
