@@ -13,8 +13,8 @@ def get_new_filename(file_extension: str) -> str:
 def pathway():
 	pass
 
-def aufnahmen(seconds: float, fs = 48000, printRecording = True) -> None:
-	myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=1, device=1)
+def aufnahmen(seconds: float, fs = 48000, printRecording = False) -> None:
+	myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2, device=1)
 	print('Aufnahme gestartet.')
 	sleep(seconds + 1)
 	#sd.wait()  # Wait until recording is finished
@@ -28,22 +28,20 @@ def speichern(myrecording, fs =  48000) -> None:
 	print('Programmende')
 
 def main():
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(17, GPIO.OUT)
-	GPIO.output(17, GPIO.LOW)
 	print(sd.query_devices())
 	dauer = 10 #in Sekunden
 	speichern(aufnahmen(dauer))
 
 if __name__ == '__main__':
 	GPIO.setmode(GPIO.BCM)
+
 	GPIO.setup(17, GPIO.OUT)
 	GPIO.setup(27, GPIO.OUT)
 	GPIO.setup(22, GPIO.OUT)
-	GPIO.output(17, GPIO.HIGH)
+	GPIO.output(17, GPIO.LOW)
 	GPIO.output(27, GPIO.LOW)
 	GPIO.output(22, GPIO.LOW)
-
+	sleep(1)
 	main()
 	# fs: Sample rate
 	# seconds: Duration of recording
