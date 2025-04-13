@@ -28,10 +28,10 @@ def aufnahmen(seconds: float, fs = 48000, printRecording = False) -> None:
 
 def speichern(myrecording, fs =  48000) -> None:
 	write(get_new_filename("wav"), fs, myrecording)  # Save as WAV file
-	print('Programmende')
+	#print('Programmende')
 
 def main(dauer):
-	print(sd.query_devices())
+	#print(sd.query_devices())
 	speichern(aufnahmen(dauer))
 
 if __name__ == '__main__':

@@ -14,6 +14,7 @@ while True:
     GPIO.output(22, GPIO.LOW)
     sleep(1)
     main(60)
+    save_temp(read_temp())
 
     # 3 and 4
     GPIO.output(17, GPIO.HIGH)
@@ -21,3 +22,4 @@ while True:
     GPIO.output(22, GPIO.LOW)
     sleep(1)
     main(60)
+    save_temp(read_temp())
