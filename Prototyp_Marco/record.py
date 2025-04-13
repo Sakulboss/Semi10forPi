@@ -25,7 +25,7 @@ def get_new_filename(file_extension: str, number: int) -> str:
 def pathway():
 	pass
 
-def aufnahmen(seconds: float, fs = 48000, printRecording = False) -> None:
+def aufnahmen(seconds: float, printRecording = False, fs = 48000) -> None:
 	myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2, device=1)
 	print('Aufnahme gestartet.')
 	sleep(seconds + 1)
