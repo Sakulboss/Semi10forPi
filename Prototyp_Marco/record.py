@@ -25,7 +25,7 @@ def get_new_filename(file_extension: str, number: int) -> str:
 def pathway():
 	pass
 
-def aufnahmen(seconds: float, printRecording = False, fs = 48000) -> None:
+def aufnahmen(seconds: float, fs = 48000, printRecording = False) -> None:
 	myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2, device=1)
 	print('Aufnahme gestartet.')
 	sleep(seconds + 1)
@@ -35,7 +35,7 @@ def aufnahmen(seconds: float, printRecording = False, fs = 48000) -> None:
 		print(myrecording)
 	return myrecording
 
-def speichern(myrecording, fs =  48000, number) -> None:
+def speichern(myrecording, number, fs =  48000) -> None:
 	write(get_new_filename("wav",number), fs, myrecording)  # Save as WAV file
 	#print('Programmende')
 
