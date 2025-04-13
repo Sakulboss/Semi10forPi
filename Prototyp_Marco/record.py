@@ -5,13 +5,13 @@ from datetime import datetime
 import os
 import RPi.GPIO as GPIO
 
-def get_new_filename(file_extension: str) -> str:
+def get_new_filename(file_extension: str, number: int) -> str:
 
     count = len([i for i in os.listdir() if i.endswith(file_extension)])
 
     timestamp = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')  # Formatierung ohne Doppelpunkte
 
-    return f'output_{timestamp}_{count}.{file_extension}'
+    return f'output_{timestamp}_{count}_{number}.{file_extension}'
 
 def pathway():
 	pass
