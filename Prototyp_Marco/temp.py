@@ -10,8 +10,6 @@ os.system("modprobe w1-therm")
 
 #sensor_ids = ["28-030e97942eea", "28-030897941e59"]
 
-
-
 def read_temp():
 	temps = []
 	for sensor in W1ThermSensor.get_available_sensors():
