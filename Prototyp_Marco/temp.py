@@ -36,8 +36,7 @@ def save_temp(temps):
 			np.savetxt(file_name, data, delimiter =",", fmt = "%s", header = "time, temp", comments = " ")
 		print(file_name)
 
-if __name__ == '__main__':
-	while True:
-		print(read_temp())
-		save_temp(read_temp())
-		time.sleep(5)
+while True:
+	print(read_temp())
+	save_temp(read_temp())
+	time.sleep(5)
