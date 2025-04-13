@@ -5,13 +5,22 @@ from datetime import datetime
 import os
 import RPi.GPIO as GPIO
 
+import os
+
+from datetime import datetime
+
+
 def get_new_filename(file_extension: str, number: int) -> str:
-
-    count = len([i for i in os.listdir() if i.endswith(file_extension)])
-
-    timestamp = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')  # Formatierung ohne Doppelpunkte
-
-    return f'output_{timestamp}_{count}_{number}.{file_extension}'
+	# Erstelle den Ordner "Aufnahmen", falls er nicht existiert
+	folder_name = 'Aufnahmen'
+	if not os.path.exists(folder_name):
+		os.makedirs(folder_name)
+	count = len([i for i in os.listdir(folder_name) if i.endswith(file_extension)])
+	timestamp = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')  # Formatierung ohne Doppelpunkte
+	filename = f'output_{timestamp}_{count}_{number}.{file_extension}'
+	# Vollständiger Pfad zur Datei
+	full_path = os.path.join(folder_name, filename)
+	return full_path
 
 def pathway():
 	pass
@@ -26,13 +35,13 @@ def aufnahmen(seconds: float, fs = 48000, printRecording = False) -> None:
 		print(myrecording)
 	return myrecording
 
-def speichern(myrecording, fs =  48000) -> None:
-	write(get_new_filename("wav"), fs, myrecording)  # Save as WAV file
+def speichern(myrecording, fs =  48000, number) -> None:
+	write(get_new_filename("wav",number), fs, myrecording)  # Save as WAV file
 	#print('Programmende')
 
-def main(dauer):
+def main(dauer, number):
 	#print(sd.query_devices())
-	speichern(aufnahmen(dauer))
+	speichern(aufnahmen(dauer),number)
 
 if __name__ == '__main__':
 	GPIO.setmode(GPIO.BCM)
