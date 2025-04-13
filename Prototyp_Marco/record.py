@@ -30,9 +30,8 @@ def speichern(myrecording, fs =  48000) -> None:
 	write(get_new_filename("wav"), fs, myrecording)  # Save as WAV file
 	print('Programmende')
 
-def main():
+def main(dauer):
 	print(sd.query_devices())
-	dauer = 10 #in Sekunden
 	speichern(aufnahmen(dauer))
 
 if __name__ == '__main__':
@@ -45,6 +44,6 @@ if __name__ == '__main__':
 	GPIO.output(27, GPIO.LOW)
 	GPIO.output(22, GPIO.LOW)
 	sleep(1)
-	main()
+	main(10)
 	# fs: Sample rate
 	# seconds: Duration of recording
