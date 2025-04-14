@@ -10,6 +10,6 @@ GPIO.setup(22, GPIO.OUT)
 gpio_pins = [25, 7, 5, 6, 8]  # GPIO-Pins für die DHT-Sensoren
 
 while True:
-    main(60, 1,)  # Aufnahme für 60 Sekunden und speichere die Datei
+    record(60, 1)  # Aufnahme für 60 Sekunden und speichere die Datei
     read_and_save_dht_sensors(gpio_pins)
     sleep(1)

@@ -82,7 +82,7 @@ def speichern(myrecording, number, fs =  48000) -> None:
 	write(get_new_filename("wav",number), fs, myrecording)  # Save as WAV file
 	#print('Programmende')
 
-def main(dauer, gpio):
+def record(dauer, gpio):
 	#print(sd.query_devices())
 	speichern(aufnahmen(dauer),gpio)
 

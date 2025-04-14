@@ -40,5 +40,6 @@ def save_temp(temps):
 if __name__ == '__main__':
 	while True:
 		gpio_pins = [25, 7, 5, 6, 8]  # Beispiel GPIO-Pins für die DHT-Sensoren
+		print(read_and_save_dht_sensors(gpio_pins))
 		read_and_save_dht_sensors(gpio_pins)
 		time.sleep(5)
