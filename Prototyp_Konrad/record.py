@@ -1,14 +1,55 @@
 import sounddevice as sd
 from scipy.io.wavfile import write
 from time import *
-from datetime import datetime
-import os
 import RPi.GPIO as GPIO
-
+from pydub import AudioSegment
 import os
-
 from datetime import datetime
 
+#Flac
+
+def cflac(wav_file_path):
+    # Load the WAV file
+    audio = AudioSegment.from_wav(wav_file_path)
+
+    # Create the output file path by changing the extension to .flac
+    flac_file_path = os.path.splitext(wav_file_path)[0] + '.flac'
+
+    # Export as FLAC
+    audio.export(flac_file_path, format="flac")
+    print(f"Converted {wav_file_path} to {flac_file_path}")
+
+
+def cwav(flac_file_path):
+    # Load the FLAC file
+    audio = AudioSegment.from_file(flac_file_path, format="flac")
+    # Create the output file path by changing the extension to .wav
+    wav_file_path = os.path.splitext(flac_file_path)[0] + '.wav'
+    # Export as WAV
+    audio.export(wav_file_path, format="wav")
+    print(f"Converted {flac_file_path} to {wav_file_path}")
+
+# Splitting
+
+def split_stereo_to_mono(wav_file_path):
+	# Load the stereo WAV file
+	audio = AudioSegment.from_wav(wav_file_path)
+	# Check if the audio is stereo
+	if audio.channels != 2:
+		raise ValueError("The input file is not a stereo WAV file.")
+	# Split into left and right channels
+	left_channel = audio.split_to_mono()[0]
+	right_channel = audio.split_to_mono()[1]
+	# Create output file paths
+	base_name = os.path.splitext(wav_file_path)[0]
+	left_channel_path = f"{base_name}_left.wav"
+	right_channel_path = f"{base_name}_right.wav"
+	# Export the mono channels as separate WAV files
+	left_channel.export(left_channel_path, format="wav")
+	right_channel.export(right_channel_path, format="wav")
+	print(f"Split {wav_file_path} into {left_channel_path} and {right_channel_path}")
+
+#Filename generator
 
 def get_new_filename(file_extension: str, number: int) -> str:
 	# Erstelle den Ordner "Aufnahmen", falls er nicht existiert
@@ -25,6 +66,8 @@ def get_new_filename(file_extension: str, number: int) -> str:
 def pathway():
 	pass
 
+#aufnehmen
+
 def aufnahmen(seconds: float, fs = 48000, printRecording = False) -> None:
 	myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2, device=1)
 	print('Aufnahme gestartet.')
@@ -39,20 +82,10 @@ def speichern(myrecording, number, fs =  48000) -> None:
 	write(get_new_filename("wav",number), fs, myrecording)  # Save as WAV file
 	#print('Programmende')
 
-def main(dauer, number):
+def main(dauer, gpio):
 	#print(sd.query_devices())
-	speichern(aufnahmen(dauer),number)
+	speichern(aufnahmen(dauer),gpio)
 
 if __name__ == '__main__':
-	GPIO.setmode(GPIO.BCM)
-
-	GPIO.setup(17, GPIO.OUT)
-	GPIO.setup(27, GPIO.OUT)
-	GPIO.setup(22, GPIO.OUT)
-	GPIO.output(17, GPIO.LOW)
-	GPIO.output(27, GPIO.LOW)
-	GPIO.output(22, GPIO.LOW)
-	sleep(1)
 	main(10)
-	# fs: Sample rate
-	# seconds: Duration of recording
+

@@ -7,20 +7,9 @@ GPIO.setup(17, GPIO.OUT)
 GPIO.setup(27, GPIO.OUT)
 GPIO.setup(22, GPIO.OUT)
 
+gpio_pins = [25, 7, 5, 6, 8]  # GPIO-Pins für die DHT-Sensoren
+
 while True:
-    #reading hive 1 and 2
-    GPIO.output(17, GPIO.LOW)
-    GPIO.output(27, GPIO.LOW)
-    GPIO.output(22, GPIO.LOW)
-    sleep(7)
-    main(60,1)
-    save_temp(read_temp())
-    sleep(7)
-    # 3 and 4
-    GPIO.output(17, GPIO.HIGH)
-    GPIO.output(27, GPIO.LOW)
-    GPIO.output(22, GPIO.LOW)
-    sleep(7)
-    main(60,2)
-    save_temp(read_temp())
-    sleep(7)
+    main(60, 1,)  # Aufnahme für 60 Sekunden und speichere die Datei
+    read_and_save_dht_sensors(gpio_pins)
+    sleep(1)
