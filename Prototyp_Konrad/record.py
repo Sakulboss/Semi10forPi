@@ -31,7 +31,7 @@ def cwav(flac_file_path):
 
 # Splitting
 
-def split_stereo_to_mono(wav_file_path):
+def splitter(wav_file_path):
 	# Load the stereo WAV file
 	audio = AudioSegment.from_wav(wav_file_path)
 	# Check if the audio is stereo
@@ -88,7 +88,7 @@ def speichern(myrecording, gpio, fs =  48000) -> None:
 
 def record(dauer, gpio):
 	#print(sd.query_devices())
-	speichern(aufnahmen(dauer),gpio)
+	speichern(aufnahmen(dauer,gpio),gpio)
 
 if __name__ == '__main__':
 	record(10,22)
