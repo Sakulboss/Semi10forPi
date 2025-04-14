@@ -68,7 +68,10 @@ def pathway():
 
 #aufnehmen
 
-def aufnahmen(seconds: float, fs = 48000, printRecording = False) -> None:
+def aufnahmen(seconds: float, gpio, fs = 48000, printRecording = False) -> None:
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(gpio, GPIO.OUT)
+	GPIO.output(gpio, GPIO.HIGH)
 	myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2, device=1)
 	print('Aufnahme gestartet.')
 	sleep(seconds + 1)
@@ -76,10 +79,11 @@ def aufnahmen(seconds: float, fs = 48000, printRecording = False) -> None:
 	print('Aufnahme fertig')
 	if printRecording:
 		print(myrecording)
+	GPIO.output(gpio, GPIO.LOW)
 	return myrecording
 
-def speichern(myrecording, number, fs =  48000) -> None:
-	write(get_new_filename("wav",number), fs, myrecording)  # Save as WAV file
+def speichern(myrecording, gpio, fs =  48000) -> None:
+	write(get_new_filename("wav",gpio), fs, myrecording)  # Save as WAV file
 	#print('Programmende')
 
 def record(dauer, gpio):
@@ -87,5 +91,5 @@ def record(dauer, gpio):
 	speichern(aufnahmen(dauer),gpio)
 
 if __name__ == '__main__':
-	main(10)
+	record(10,22)
 
