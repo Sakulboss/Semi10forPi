@@ -11,6 +11,11 @@ https://makersportal.com/blog/recording-stereo-audio-on-a-raspberry-pi
 Setup of poetry: 
 https://douwevandermeij.medium.com/proper-python-setup-with-pyenv-poetry-4d8baea329a8
 
+DS18B20:
+https://pimylifeup.com/raspberry-pi-temperature-sensor/
+
+Autoboot:
+https://forums.raspberrypi.com/viewtopic.php?t=371593
 
 Debugging sources:
 https://stackoverflow.com/questions/69150641/aplay-main831-audio-open-error-no-such-file-or-directory
