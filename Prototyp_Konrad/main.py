@@ -7,10 +7,6 @@ GPIO.setup(17, GPIO.OUT)
 GPIO.setup(27, GPIO.OUT)
 GPIO.setup(22, GPIO.OUT)
 
-# Beispielaufruf
-folder = "Aufnahmen"  # Ersetze dies durch den Pfad zu deinem Ordner
-convert_all_wav_to_flac(folder)
-
 gpio_pins = [25, 7, 5, 6, 8]  # GPIO-Pins für die DHT-Sensoren
 
 while True:
