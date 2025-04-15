@@ -30,8 +30,8 @@ gpio_pins = [25, 7, 5, 6, 8]  # GPIO-Pins für die DHT-Sensoren
 while True:
     record(60, 22)  # Aufnahme für 60 Sekunden und speichere die Datei
     read_and_save_dht_sensors(gpio_pins)
-    sleep(1)
+    sleep(45)
     record(60, 17)  # Aufnahme für 60 Sekunden und speichere die Datei
     read_and_save_dht_sensors(gpio_pins)
-    sleep(1)
+    sleep(45)
     convert_all_wav_to_flac("Aufnahmen")
