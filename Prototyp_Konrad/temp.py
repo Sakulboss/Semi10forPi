@@ -1,4 +1,4 @@
-import adafruit_dht
+import Adafruit_DHT
 import board
 import os
 import numpy as np
