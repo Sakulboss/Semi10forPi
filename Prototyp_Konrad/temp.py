@@ -1,12 +1,7 @@
-import os
-import time
-import numpy as np
 import adafruit_dht
 import board
-
 import os
 import numpy as np
-import Adafruit_DHT
 import time
 
 
