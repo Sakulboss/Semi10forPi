@@ -13,8 +13,8 @@ while True:
     record(60, 22)  # Aufnahme fuer 60 Sekunden und speichere die Datei
     read_and_save_dht_sensors(gpio_pins)
     print("Temperaturdaten gespeichert.")
-    sleep(45)
+    sleep(1)
     record(60, 17)  # Aufnahme fuer 60 Sekunden und speichere die Datei
     read_and_save_dht_sensors(gpio_pins)
     print("Temperaturdaten gespeichert.")
-    sleep(45)
+    sleep(1)
