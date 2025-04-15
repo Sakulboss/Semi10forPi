@@ -2,12 +2,12 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 from time import *
 import RPi.GPIO as GPIO
-from pydub import AudioSegment
+#from pydub import AudioSegment
 import os
 from datetime import datetime
 
 #Flac
-
+'''
 def cflac(wav_file_path):
     # Load the WAV file
     audio = AudioSegment.from_wav(wav_file_path)
@@ -48,7 +48,7 @@ def splitter(wav_file_path):
 	left_channel.export(left_channel_path, format="wav")
 	right_channel.export(right_channel_path, format="wav")
 	print(f"Split {wav_file_path} into {left_channel_path} and {right_channel_path}")
-
+'''
 #Filename generator
 
 def get_new_filename(file_extension: str, number: int) -> str:
