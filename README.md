@@ -17,6 +17,9 @@ https://pimylifeup.com/raspberry-pi-temperature-sensor/
 Autoboot:
 https://forums.raspberrypi.com/viewtopic.php?t=371593
 
+Background:
+https://www.tomshardware.com/how-to/run-long-running-scripts-raspberry-pi
+
 Debugging sources:
 https://stackoverflow.com/questions/69150641/aplay-main831-audio-open-error-no-such-file-or-directory
 https://stackoverflow.com/questions/49333582/portaudio-library-not-found-by-sounddevice
