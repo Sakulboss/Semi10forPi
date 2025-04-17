@@ -4,6 +4,7 @@ from time import *
 import RPi.GPIO as GPIO
 from pydub import AudioSegment
 import os
+from datetime import datetime
 
 def cflac(wav_file_path):
     # Load the WAV file
@@ -53,8 +54,11 @@ def aufnahmen(seconds: float, gpio, fs = 48000, printRecording = False) -> None:
 
 def speichern(myrecording, gpio, flac, fs =  48000) -> None:
     if flac:
+		# Save as WAV file
         filepath=get_new_filename("wav", gpio)
-        writewav(filepath, fs, myrecording)  # Save as WAV file
+        writewav(filepath, fs, myrecording)
+
+		# Convert to FLAC
         flac_file_path = os.path.splitext(filepath)[0] + '.flac'
         audio = AudioSegment.from_wav(filepath)
         audio.export(flac_file_path, format="flac")
