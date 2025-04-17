@@ -72,7 +72,7 @@ def aufnahmen(seconds: float, gpio, fs = 48000, printRecording = False) -> None:
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(gpio, GPIO.OUT)
 	GPIO.output(gpio, GPIO.HIGH)
-	myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2, device=1)
+	myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2, device=0)
 	print('Aufnahme gestartet.')
 	sleep(seconds + 1)
 	#sd.wait()  # Wait until recording is finished
