@@ -83,7 +83,7 @@ def aufnahmen(seconds: float, gpio, fs = 48000, printRecording = False) -> None:
 	return myrecording
 
 def speichern(myrecording, gpio, fs =  48000) -> None:
-	write(get_new_filename("flac",gpio), fs, myrecording)  # Save as WAV file
+	write(get_new_filename("wav",gpio), fs, myrecording)  # Save as WAV file
 	#print('Programmende')
 
 def record(dauer, gpio):
