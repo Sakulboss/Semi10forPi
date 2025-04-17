@@ -7,7 +7,7 @@ GPIO.setup(17, GPIO.OUT)
 GPIO.setup(27, GPIO.OUT)
 GPIO.setup(22, GPIO.OUT)
 
-gpio_pins = [25, 7, 5, 6, 8]  # GPIO-Pins für die DHT-Sensoren
+gpio_pins = [7, 5, 6, 8]  # 25 ist Stock 1 GPIO-Pins für die DHT-Sensoren
 
 while True:
     record(60, 22)  # Aufnahme fuer 60 Sekunden und speichere die Datei
