@@ -70,4 +70,4 @@ def record(dauer, gpio):
     speichern(aufnahmen(dauer,gpio),gpio, True)
 
 if __name__ == '__main__':
-    record(10,22)
+    record(10,17)
