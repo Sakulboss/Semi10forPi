@@ -40,21 +40,18 @@ def aufnahmen(seconds: float, gpio, fs = 48000, printRecording = False) -> None:
     GPIO.output(gpio, GPIO.LOW)
     return myrecording
 
-
-def speichern(myrecording, gpio, flac, fs=48000) -> None:
+def speichern(myrecording, gpio, flac, fs =  48000) -> None:
     if flac:
-        # Erstelle ein AudioSegment aus myrecording
-        audio = AudioSegment(
-            myrecording.tobytes(),
-            frame_rate=fs,
-            sample_width=myrecording.dtype.itemsize,
-            channels=2  # die Anzahl der Kanäle, die myrecording hat
-        )
-        # Exportiere direkt als FLAC
-        audio.export(get_new_filename("flac", gpio), format="flac")
+        # Save as WAV file
+        filepath=get_new_filename("wav", gpio)
+        writewav(filepath, fs, myrecording)
+
+        # Convert to FLAC
+        flac_file_path = os.path.splitext(filepath)[0] + '.flac'
+        audio = AudioSegment.from_wav(filepath)
+        audio.export(flac_file_path, format="flac")
     else:
-        # Speichere als WAV-Datei
-        writewav(get_new_filename("wav", gpio), fs, myrecording)
+        writewav(get_new_filename("wav",gpio), fs, myrecording)  # Save as WAV file
 
 def record(dauer, gpio,flac):
     #print(sd.query_devices())
