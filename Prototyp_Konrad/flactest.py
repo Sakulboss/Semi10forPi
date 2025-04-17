@@ -51,7 +51,7 @@ def aufnahmen(seconds: float, gpio, fs = 48000, printRecording = False) -> None:
     GPIO.output(gpio, GPIO.LOW)
     return myrecording
 
-def speichern(myrecording, gpio, fs =  48000, flac) -> None:
+def speichern(myrecording, gpio, flac, fs =  48000) -> None:
     if flac:
         myrecording.export("flactestt", format="flac")
     else:
