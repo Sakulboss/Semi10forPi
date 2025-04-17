@@ -1,5 +1,5 @@
 import sounddevice as sd
-from scipy.io.wavfile import writewav
+from scipy.io.wavfile import write as writewav
 from time import *
 import RPi.GPIO as GPIO
 from pydub import AudioSegment
