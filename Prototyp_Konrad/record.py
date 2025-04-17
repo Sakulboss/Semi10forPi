@@ -43,21 +43,15 @@ def aufnahmen(seconds: float, gpio, fs = 48000, printRecording = False) -> None:
 
 def speichern(myrecording, gpio, flac, fs=48000) -> None:
     if flac:
-        # Konvertiere myrecording direkt in FLAC
-        flac_file_path = get_new_filename("flac", gpio)
-        # Überprüfen, ob myrecording ein NumPy-Array ist
-        if isinstance(myrecording, np.ndarray):
-            # Erstelle ein AudioSegment aus myrecording
-            audio = AudioSegment(
-                myrecording.tobytes(),
-                frame_rate=fs,
-                sample_width=myrecording.dtype.itemsize,
-                channels=2  # die Anzahl der Kanäle, die myrecording hat
-            )
-            # Exportiere direkt als FLAC
-            audio.export(flac_file_path, format="flac")
-        else:
-            raise ValueError("myrecording muss ein NumPy-Array sein.")
+        # Erstelle ein AudioSegment aus myrecording
+        audio = AudioSegment(
+            myrecording.tobytes(),
+            frame_rate=fs,
+            sample_width=myrecording.dtype.itemsize,
+            channels=2  # die Anzahl der Kanäle, die myrecording hat
+        )
+        # Exportiere direkt als FLAC
+        audio.export(get_new_filename("flac", gpio), format="flac")
     else:
         # Speichere als WAV-Datei
         writewav(get_new_filename("wav", gpio), fs, myrecording)
