@@ -50,6 +50,7 @@ def speichern(myrecording, gpio, flac, fs =  48000) -> None:
         flac_file_path = os.path.splitext(filepath)[0] + '.flac'
         audio = AudioSegment.from_wav(filepath)
         audio.export(flac_file_path, format="flac")
+        os.remove(filepath)
     else:
         writewav(get_new_filename("wav",gpio), fs, myrecording)  # Save as WAV file
 
