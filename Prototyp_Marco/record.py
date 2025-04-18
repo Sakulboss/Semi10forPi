@@ -1,12 +1,9 @@
 import sounddevice as sd
-from scipy.io.wavfile import write
+from scipy.io.wavfile import write as writewav
 from time import *
-from datetime import datetime
 import os
 import RPi.GPIO as GPIO
-
-import os
-
+from pydub import AudioSegment
 from datetime import datetime
 
 
@@ -35,13 +32,23 @@ def aufnahmen(seconds: float, fs = 48000, printRecording = False) -> None:
 		print(myrecording)
 	return myrecording
 
-def speichern(myrecording, number, fs =  48000) -> None:
-	write(get_new_filename("wav",number), fs, myrecording)  # Save as WAV file
-	#print('Programmende')
+def speichern(myrecording, number, flac, fs =  48000) -> None:
+	if flac:
+		# Save as WAV file
+		filepath = get_new_filename("wav", number)
+		writewav(filepath, fs, myrecording)
 
-def main(dauer, number):
+		# Convert to FLAC
+		flac_file_path = os.path.splitext(filepath)[0] + '.flac'
+		audio = AudioSegment.from_wav(filepath)
+		audio.export(flac_file_path, format="flac")
+		os.remove(filepath)
+	else:
+		writewav(get_new_filename("wav", number), fs, myrecording)  # Save as WAV file
+
+def main(dauer, number, flac):
 	#print(sd.query_devices())
-	speichern(aufnahmen(dauer),number)
+	speichern(aufnahmen(dauer), number, flac)
 
 if __name__ == '__main__':
 	GPIO.setmode(GPIO.BCM)

@@ -5,7 +5,6 @@ import RPi.GPIO as GPIO
 from pydub import AudioSegment
 import os
 from datetime import datetime
-import io
 
 #Filename generator
 
