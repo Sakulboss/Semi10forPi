@@ -46,7 +46,7 @@ def speichern(myrecording, number, flac, fs =  48000) -> None:
 	else:
 		writewav(get_new_filename("wav", number), fs, myrecording)  # Save as WAV file
 
-def main(dauer, number, flac):
+def record(dauer, number, flac):
 	#print(sd.query_devices())
 	speichern(aufnahmen(dauer), number, flac)
 
