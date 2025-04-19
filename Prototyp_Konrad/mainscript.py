@@ -21,6 +21,6 @@ while True:
     sleep(1)
     i=i+1
     print(i)
-    if i==3:
-        print("Neustart des Systems...")
-        os.system("sudo shutdown -r now")
+    #if i==3:
+    #    print("Neustart des Systems...")
+    #    os.system("sudo shutdown -r now")
