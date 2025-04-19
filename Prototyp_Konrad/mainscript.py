@@ -22,4 +22,5 @@ while True:
     i=i+1
     print(i)
     if i==3:
+        print("Neustart des Systems...")
         os.system("sudo shutdown -r now")
