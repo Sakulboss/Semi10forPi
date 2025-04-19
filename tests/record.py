@@ -27,6 +27,25 @@ def speichern(myrecording, fs =  48000) -> None:
 	write(get_new_filename("wav"), fs, myrecording)  # Save as WAV file
 	print('Programmende')
 
+'''
+Noch zu testen:
+def speichern(myrecording, gpio) -> None:
+	flac_file_path = get_new_filename("flac", gpio)
+
+	# Überprüfen, ob myrecording ein NumPy-Array ist
+
+	if isinstance(myrecording, np.ndarray):
+
+		# Speichern Sie das NumPy-Array direkt als FLAC
+
+		pyflac.encode(myrecording, flac_file_path)
+
+	else:
+
+		raise ValueError("myrecording muss ein NumPy-Array sein.")
+'''
+
+
 def main():
 	print(sd.query_devices())
 	dauer = 10 #in Sekunden
@@ -45,3 +64,4 @@ if __name__ == '__main__':
 	main()
 	# fs: Sample rate
 	# seconds: Duration of recording
+# os.system("sudo shutdown -r now")

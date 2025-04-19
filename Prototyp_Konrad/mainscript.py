@@ -8,7 +8,7 @@ GPIO.setup(27, GPIO.OUT)
 GPIO.setup(22, GPIO.OUT)
 
 gpio_pins = [7, 5, 6, 8]  # 25 ist Stock 1 GPIO-Pins für die DHT-Sensoren
-a=0
+i=0
 
 while True:
     record(60, 22, True)  # Aufnahme fuer 60 Sekunden und speichere die Datei
@@ -19,6 +19,7 @@ while True:
     read_and_save_dht_sensors(gpio_pins)
     print("Temperaturdaten gespeichert.")
     sleep(1)
-    a=a+1
-    if a==3:
+    i=i+1
+    print(i)
+    if i==3:
         os.system("sudo shutdown -r now")
