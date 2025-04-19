@@ -1,26 +1,55 @@
-from record import *
-from temp import *
+import RPi.GPIO as GPIO
+import time
+import os
+from record import record
+from temp import read_and_save_dht_sensors
 
-GPIO.setmode(GPIO.BCM)
+# Konfiguration
+GPIO_PINS = {
+    'audio_pin_1': 22,
+    'audio_pin_2': 17,
+    'audio_pin_3': 27,
+}
+DHT_PINS = [7, 5, 6, 8]  # GPIO-Pins für die DHT-Sensoren
+RECORD_DURATION = 60  # Dauer der Aufnahme in Sekunden
+SLEEP_DURATION = 1  # Pause zwischen den Aufnahmen
 
-GPIO.setup(17, GPIO.OUT)
-GPIO.setup(27, GPIO.OUT)
-GPIO.setup(22, GPIO.OUT)
+# GPIO initialisieren
+def setup_gpio():
+    GPIO.setmode(GPIO.BCM)
+    for pin in GPIO_PINS.values():
+        GPIO.setup(pin, GPIO.OUT)
 
-gpio_pins = [7, 5, 6, 8]  # 25 ist Stock 1 GPIO-Pins für die DHT-Sensoren
-i=0
+# GPIO freigeben
+def cleanup_gpio():
+    GPIO.cleanup()
 
-while True:
-    record(60, 22, True)  # Aufnahme fuer 60 Sekunden und speichere die Datei
-    read_and_save_dht_sensors(gpio_pins)
-    print("Temperaturdaten gespeichert.")
-    sleep(1)
-    record(60, 17, True)  # Aufnahme fuer 60 Sekunden und speichere die Datei
-    read_and_save_dht_sensors(gpio_pins)
-    print("Temperaturdaten gespeichert.")
-    sleep(1)
-    i=i+1
-    print(i)
-    #if i==3:
-    #    print("Neustart des Systems...")
-    #    os.system("sudo shutdown -r now")
+# Hauptfunktion
+def main():
+    setup_gpio()
+    try:
+        i = 0
+        while True:
+            for pin in [GPIO_PINS['audio_pin_1'], GPIO_PINS['audio_pin_2']]:
+                record(RECORD_DURATION, pin, True)  # Aufnahme für 60 Sekunden
+                read_and_save_dht_sensors(DHT_PINS)
+                print("Temperaturdaten gespeichert.")
+                time.sleep(SLEEP_DURATION)
+                i += 1
+                print(f"Aufnahme-Zyklus: {i}")
+
+            # Optional: Neustart nach einer bestimmten Anzahl von Zyklen
+            if i >= 1000:
+                print("Neustart des Systems...")
+                os.system("sudo shutdown -r now")
+                break  # Beende die Schleife nach dem Neustart
+
+    except KeyboardInterrupt:
+        print("Programm wurde durch den Benutzer beendet.")
+    except Exception as e:
+        print(f"Ein Fehler ist aufgetreten: {e}")
+    finally:
+        cleanup_gpio()
+
+if __name__ == "__main__":
+    main()
